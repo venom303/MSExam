@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSExam", "MSExam\MSExam.csproj", "{AB5FCF6D-3DAB-4614-A4B0-9BFFBAD225C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multithreading", "Multithreading\Multithreading.csproj", "{867DA882-9BA4-4EF9-8986-D797BC80D9B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Multithreading\Examples.csproj", "{867DA882-9BA4-4EF9-8986-D797BC80D9B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interop", "Interop\Interop.csproj", "{BCA37AC3-0C42-459B-BCDD-F41E447027B4}"
 EndProject

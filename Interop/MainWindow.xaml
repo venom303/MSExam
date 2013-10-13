@@ -7,6 +7,7 @@
         <TextBox x:Name="txtResult" HorizontalAlignment="Left" Height="59" Margin="65,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
         <Button x:Name="btnSpace" Content="Get Free Space" HorizontalAlignment="Left" Margin="198,37,0,0" VerticalAlignment="Top" Width="108" Height="33" Click="btnSpace_Click"/>
         <Button x:Name="btnGetText" Content="Get Text" HorizontalAlignment="Left" Margin="341,37,0,0" VerticalAlignment="Top" Width="91" Height="33" Click="btnGetText_Click"/>
+        <Button x:Name="btnExcel" Content="Excel" HorizontalAlignment="Left" Margin="341,100,0,0" VerticalAlignment="Top" Width="91" Height="34" Click="btnExcel_Click"/>
 
     </Grid>
 </Window>

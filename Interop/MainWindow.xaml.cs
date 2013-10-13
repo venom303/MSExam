@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace Interop
 {
@@ -80,6 +82,26 @@ namespace Interop
             //Win32NativeFunctions.GetWindowText(wdExpress.MainWindowHandle, writer, 1000000);
 
             //txtResult.Text = writer.ToString();
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            Excel._Application excelApp = new Excel.Application();
+            var workbook = excelApp.Workbooks.Add();
+            Excel.Worksheet sheet = workbook.Worksheets[1];
+
+            excelApp.Visible = true;
+
+            sheet.Cells[1, 1].Value = "Value";
+            sheet.Cells[1, 2].Value = "Value Squared";
+
+            for (int i = 1; i <= 10; i++)
+            {
+                sheet.Cells[i + 1, 1].Value = i;
+                sheet.Cells[i + 1, 2].Value = (i * i).ToString();
+            }
+            sheet.Columns[1].AutoFit();
+            sheet.Columns[2].AutoFit();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Examples.Exceptions
             Console.ReadKey();
         }
 
-        [Example("Rethrow e Exception Example", true)]
+        [Example("Rethrow e Exception Example", false)]
         public void RethrowEExceptionExample()
         {
             try

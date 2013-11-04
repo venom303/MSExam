@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\ADOExamples.cs" />
     <Compile Include="AsyncAwaitExamples.cs" />
+    <Compile Include="Collections\CollectionExamples.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="ExampleAttribute.cs" />
     <Compile Include="Exceptions\ExceptionExamples.cs" />
@@ -56,6 +59,10 @@
     <Compile Include="ObjectLifeCycle\LifeCycleExamples.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\Cards.cs" />
+    <Compile Include="Reflection\Colors.cs" />
+    <Compile Include="Reflection\ReflectionExampleClass.cs" />
+    <Compile Include="Reflection\ReflectionExamples.cs" />
     <Compile Include="StringExamples.cs" />
     <Compile Include="Multithreading\TaskExamples.cs" />
     <Compile Include="Multithreading\ThreadExamples.cs" />

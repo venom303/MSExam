@@ -1,0 +1,620 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="APPLICATION_REQUEST" EntityType="Model.Store.APPLICATION_REQUEST" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="APPLICATION_REQUEST_USERS" EntityType="Model.Store.APPLICATION_REQUEST_USERS" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="MCC_Company" EntityType="Model.Store.MCC_Company" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="MCC_Directory" EntityType="Model.Store.MCC_Directory" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="MCC_Message" EntityType="Model.Store.MCC_Message" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="MCC_MessageInDirectory" EntityType="Model.Store.MCC_MessageInDirectory" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="MCC_MessageRecipient" EntityType="Model.Store.MCC_MessageRecipient" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="MCC_User" EntityType="Model.Store.MCC_User" store:Type="Tables" Schema="SCMSG" />
+          <EntitySet Name="SVS_CONVERSATION" EntityType="Model.Store.SVS_CONVERSATION" store:Type="Tables" Schema="SCMSG" />
+          <AssociationSet Name="APPL_REQ_USERS_APPL_REQ" Association="Model.Store.APPL_REQ_USERS_APPL_REQ">
+            <End Role="APPLICATION_REQUEST" EntitySet="APPLICATION_REQUEST" />
+            <End Role="APPLICATION_REQUEST_USERS" EntitySet="APPLICATION_REQUEST_USERS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011761" Association="Model.Store.SYS_C0011761">
+            <End Role="MCC_Company" EntitySet="MCC_Company" />
+            <End Role="MCC_User" EntitySet="MCC_User" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011762" Association="Model.Store.SYS_C0011762">
+            <End Role="MCC_User" EntitySet="MCC_User" />
+            <End Role="MCC_Directory" EntitySet="MCC_Directory" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011763" Association="Model.Store.SYS_C0011763">
+            <End Role="MCC_Message" EntitySet="MCC_Message" />
+            <End Role="MCC_MessageRecipient" EntitySet="MCC_MessageRecipient" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011764" Association="Model.Store.SYS_C0011764">
+            <End Role="MCC_User" EntitySet="MCC_User" />
+            <End Role="MCC_Message" EntitySet="MCC_Message" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011765" Association="Model.Store.SYS_C0011765">
+            <End Role="MCC_Message" EntitySet="MCC_Message" />
+            <End Role="MCC_MessageInDirectory" EntitySet="MCC_MessageInDirectory" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011766" Association="Model.Store.SYS_C0011766">
+            <End Role="MCC_Directory" EntitySet="MCC_Directory" />
+            <End Role="MCC_MessageInDirectory" EntitySet="MCC_MessageInDirectory" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011768" Association="Model.Store.SYS_C0011768">
+            <End Role="MCC_User" EntitySet="MCC_User" />
+            <End Role="MCC_MessageRecipient" EntitySet="MCC_MessageRecipient" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="APPLICATION_REQUEST">
+          <Key>
+            <PropertyRef Name="REQUESTID" />
+          </Key>
+          <Property Name="REQUESTID" Type="number" Nullable="false" />
+          <Property Name="BUYERAGENTID" Type="varchar2" MaxLength="8" />
+          <Property Name="BUYERPCC" Type="varchar2" MaxLength="8" />
+          <Property Name="APPLICATIONID" Type="varchar2" MaxLength="38" />
+          <Property Name="APPLICATIONVERSION" Type="varchar2" MaxLength="25" />
+          <Property Name="REQUESTDATE" Type="date" />
+          <Property Name="APPROVEDDATE" Type="date" />
+          <Property Name="SALEDATE" Type="date" />
+          <Property Name="LASTUPDATE" Type="date" />
+          <Property Name="PURCHASEPRICE" Type="number" Precision="10" Scale="2" />
+          <Property Name="REQUESTSTATUS" Type="varchar2" MaxLength="25" />
+          <Property Name="BUYERAGENCYNAME" Type="varchar2" MaxLength="200" />
+          <Property Name="ENTIREAGENCY" Type="number" />
+        </EntityType>
+        <EntityType Name="APPLICATION_REQUEST_USERS">
+          <Key>
+            <PropertyRef Name="REQUESTID" />
+            <PropertyRef Name="AGENTID" />
+            <PropertyRef Name="PCC" />
+          </Key>
+          <Property Name="REQUESTID" Type="number" Nullable="false" />
+          <Property Name="AGENTID" Type="varchar2" Nullable="false" MaxLength="8" />
+          <Property Name="PCC" Type="varchar2" Nullable="false" MaxLength="8" />
+          <Property Name="DATEADDED" Type="date" />
+        </EntityType>
+        <EntityType Name="MCC_Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="number" Nullable="false" />
+          <Property Name="Name" Type="varchar2" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MCC_Directory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="number" Nullable="false" />
+          <Property Name="Name" Type="varchar2" Nullable="false" MaxLength="50" />
+          <Property Name="Type" Type="number" Nullable="false" />
+          <Property Name="OwnerId" Type="number" />
+        </EntityType>
+        <EntityType Name="MCC_Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="number" Nullable="false" />
+          <Property Name="Subject" Type="varchar2" Nullable="false" MaxLength="255" />
+          <Property Name="Body" Type="clob" Nullable="false" />
+          <Property Name="SentDate" Type="timestamp" Nullable="false" />
+          <Property Name="SenderId" Type="number" />
+          <Property Name="ConversationId" Type="number" />
+        </EntityType>
+        <EntityType Name="MCC_MessageInDirectory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="number" Nullable="false" />
+          <Property Name="ReadDate" Type="date" />
+          <Property Name="DeleteDate" Type="date" />
+          <Property Name="MessageId" Type="number" />
+          <Property Name="DirectoryId" Type="number" />
+        </EntityType>
+        <EntityType Name="MCC_MessageRecipient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="number" Nullable="false" />
+          <Property Name="RecipientId" Type="number" />
+          <Property Name="MessageId" Type="number" />
+        </EntityType>
+        <EntityType Name="MCC_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="number" Nullable="false" />
+          <Property Name="Name" Type="varchar2" MaxLength="50" />
+          <Property Name="SabreID" Type="varchar2" Nullable="false" MaxLength="6" />
+          <Property Name="Pcc" Type="varchar2" Nullable="false" MaxLength="6" />
+          <Property Name="Email" Type="varchar2" MaxLength="100" />
+          <Property Name="CompanyId" Type="number" />
+        </EntityType>
+        <EntityType Name="SVS_CONVERSATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar2" Nullable="false" MaxLength="48" />
+          <Property Name="VERSIONID" Type="varchar2" Nullable="false" MaxLength="48" />
+          <Property Name="CREATIONDATE" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <Association Name="APPL_REQ_USERS_APPL_REQ">
+          <End Role="APPLICATION_REQUEST" Type="Model.Store.APPLICATION_REQUEST" Multiplicity="1" />
+          <End Role="APPLICATION_REQUEST_USERS" Type="Model.Store.APPLICATION_REQUEST_USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICATION_REQUEST">
+              <PropertyRef Name="REQUESTID" />
+            </Principal>
+            <Dependent Role="APPLICATION_REQUEST_USERS">
+              <PropertyRef Name="REQUESTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011761">
+          <End Role="MCC_Company" Type="Model.Store.MCC_Company" Multiplicity="0..1" />
+          <End Role="MCC_User" Type="Model.Store.MCC_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_User">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011762">
+          <End Role="MCC_User" Type="Model.Store.MCC_User" Multiplicity="0..1" />
+          <End Role="MCC_Directory" Type="Model.Store.MCC_Directory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_Directory">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011763">
+          <End Role="MCC_Message" Type="Model.Store.MCC_Message" Multiplicity="0..1" />
+          <End Role="MCC_MessageRecipient" Type="Model.Store.MCC_MessageRecipient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageRecipient">
+              <PropertyRef Name="MessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011764">
+          <End Role="MCC_User" Type="Model.Store.MCC_User" Multiplicity="0..1" />
+          <End Role="MCC_Message" Type="Model.Store.MCC_Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_Message">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011765">
+          <End Role="MCC_Message" Type="Model.Store.MCC_Message" Multiplicity="0..1" />
+          <End Role="MCC_MessageInDirectory" Type="Model.Store.MCC_MessageInDirectory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageInDirectory">
+              <PropertyRef Name="MessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011766">
+          <End Role="MCC_Directory" Type="Model.Store.MCC_Directory" Multiplicity="0..1" />
+          <End Role="MCC_MessageInDirectory" Type="Model.Store.MCC_MessageInDirectory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Directory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageInDirectory">
+              <PropertyRef Name="DirectoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011768">
+          <End Role="MCC_User" Type="Model.Store.MCC_User" Multiplicity="0..1" />
+          <End Role="MCC_MessageRecipient" Type="Model.Store.MCC_MessageRecipient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageRecipient">
+              <PropertyRef Name="RecipientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="APPLICATION_REQUEST" EntityType="Model.APPLICATION_REQUEST" />
+          <EntitySet Name="APPLICATION_REQUEST_USERS" EntityType="Model.APPLICATION_REQUEST_USERS" />
+          <EntitySet Name="MCC_Company" EntityType="Model.MCC_Company" />
+          <EntitySet Name="MCC_Directory" EntityType="Model.MCC_Directory" />
+          <EntitySet Name="MCC_Message" EntityType="Model.MCC_Message" />
+          <EntitySet Name="MCC_MessageInDirectory" EntityType="Model.MCC_MessageInDirectory" />
+          <EntitySet Name="MCC_MessageRecipient" EntityType="Model.MCC_MessageRecipient" />
+          <EntitySet Name="MCC_User" EntityType="Model.MCC_User" />
+          <EntitySet Name="SVS_CONVERSATION" EntityType="Model.SVS_CONVERSATION" />
+          <AssociationSet Name="APPL_REQ_USERS_APPL_REQ" Association="Model.APPL_REQ_USERS_APPL_REQ">
+            <End Role="APPLICATION_REQUEST" EntitySet="APPLICATION_REQUEST" />
+            <End Role="APPLICATION_REQUEST_USERS" EntitySet="APPLICATION_REQUEST_USERS" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011761" Association="Model.SYS_C0011761">
+            <End Role="MCC_Company" EntitySet="MCC_Company" />
+            <End Role="MCC_User" EntitySet="MCC_User" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011762" Association="Model.SYS_C0011762">
+            <End Role="MCC_User" EntitySet="MCC_User" />
+            <End Role="MCC_Directory" EntitySet="MCC_Directory" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011766" Association="Model.SYS_C0011766">
+            <End Role="MCC_Directory" EntitySet="MCC_Directory" />
+            <End Role="MCC_MessageInDirectory" EntitySet="MCC_MessageInDirectory" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011763" Association="Model.SYS_C0011763">
+            <End Role="MCC_Message" EntitySet="MCC_Message" />
+            <End Role="MCC_MessageRecipient" EntitySet="MCC_MessageRecipient" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011764" Association="Model.SYS_C0011764">
+            <End Role="MCC_User" EntitySet="MCC_User" />
+            <End Role="MCC_Message" EntitySet="MCC_Message" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011765" Association="Model.SYS_C0011765">
+            <End Role="MCC_Message" EntitySet="MCC_Message" />
+            <End Role="MCC_MessageInDirectory" EntitySet="MCC_MessageInDirectory" />
+          </AssociationSet>
+          <AssociationSet Name="SYS_C0011768" Association="Model.SYS_C0011768">
+            <End Role="MCC_User" EntitySet="MCC_User" />
+            <End Role="MCC_MessageRecipient" EntitySet="MCC_MessageRecipient" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="APPLICATION_REQUEST">
+          <Key>
+            <PropertyRef Name="REQUESTID" />
+          </Key>
+          <Property Name="REQUESTID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="BUYERAGENTID" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="BUYERPCC" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="APPLICATIONID" Type="String" MaxLength="38" Unicode="false" FixedLength="false" />
+          <Property Name="APPLICATIONVERSION" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="REQUESTDATE" Type="DateTime" />
+          <Property Name="APPROVEDDATE" Type="DateTime" />
+          <Property Name="SALEDATE" Type="DateTime" />
+          <Property Name="LASTUPDATE" Type="DateTime" />
+          <Property Name="PURCHASEPRICE" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="REQUESTSTATUS" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="BUYERAGENCYNAME" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ENTIREAGENCY" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="APPLICATION_REQUEST_USERS" Relationship="Model.APPL_REQ_USERS_APPL_REQ" FromRole="APPLICATION_REQUEST" ToRole="APPLICATION_REQUEST_USERS" />
+        </EntityType>
+        <EntityType Name="APPLICATION_REQUEST_USERS">
+          <Key>
+            <PropertyRef Name="REQUESTID" />
+            <PropertyRef Name="AGENTID" />
+            <PropertyRef Name="PCC" />
+          </Key>
+          <Property Name="REQUESTID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="AGENTID" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="PCC" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="DATEADDED" Type="DateTime" />
+          <NavigationProperty Name="APPLICATION_REQUEST" Relationship="Model.APPL_REQ_USERS_APPL_REQ" FromRole="APPLICATION_REQUEST_USERS" ToRole="APPLICATION_REQUEST" />
+        </EntityType>
+        <EntityType Name="MCC_Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="MCC_User" Relationship="Model.SYS_C0011761" FromRole="MCC_Company" ToRole="MCC_User" />
+        </EntityType>
+        <EntityType Name="MCC_Directory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Type" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="OwnerId" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="MCC_User" Relationship="Model.SYS_C0011762" FromRole="MCC_Directory" ToRole="MCC_User" />
+          <NavigationProperty Name="MCC_MessageInDirectory" Relationship="Model.SYS_C0011766" FromRole="MCC_Directory" ToRole="MCC_MessageInDirectory" />
+        </EntityType>
+        <EntityType Name="MCC_Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="SentDate" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="SenderId" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ConversationId" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="MCC_MessageRecipient" Relationship="Model.SYS_C0011763" FromRole="MCC_Message" ToRole="MCC_MessageRecipient" />
+          <NavigationProperty Name="MCC_User" Relationship="Model.SYS_C0011764" FromRole="MCC_Message" ToRole="MCC_User" />
+          <NavigationProperty Name="MCC_MessageInDirectory" Relationship="Model.SYS_C0011765" FromRole="MCC_Message" ToRole="MCC_MessageInDirectory" />
+        </EntityType>
+        <EntityType Name="MCC_MessageInDirectory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ReadDate" Type="DateTime" />
+          <Property Name="DeleteDate" Type="DateTime" />
+          <Property Name="MessageId" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="DirectoryId" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="MCC_Directory" Relationship="Model.SYS_C0011766" FromRole="MCC_MessageInDirectory" ToRole="MCC_Directory" />
+          <NavigationProperty Name="MCC_Message" Relationship="Model.SYS_C0011765" FromRole="MCC_MessageInDirectory" ToRole="MCC_Message" />
+        </EntityType>
+        <EntityType Name="MCC_MessageRecipient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="RecipientId" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MessageId" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="MCC_Message" Relationship="Model.SYS_C0011763" FromRole="MCC_MessageRecipient" ToRole="MCC_Message" />
+          <NavigationProperty Name="MCC_User" Relationship="Model.SYS_C0011768" FromRole="MCC_MessageRecipient" ToRole="MCC_User" />
+        </EntityType>
+        <EntityType Name="MCC_User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="SabreID" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="Pcc" Type="String" Nullable="false" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CompanyId" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="MCC_Company" Relationship="Model.SYS_C0011761" FromRole="MCC_User" ToRole="MCC_Company" />
+          <NavigationProperty Name="MCC_Directory" Relationship="Model.SYS_C0011762" FromRole="MCC_User" ToRole="MCC_Directory" />
+          <NavigationProperty Name="MCC_Message" Relationship="Model.SYS_C0011764" FromRole="MCC_User" ToRole="MCC_Message" />
+          <NavigationProperty Name="MCC_MessageRecipient" Relationship="Model.SYS_C0011768" FromRole="MCC_User" ToRole="MCC_MessageRecipient" />
+        </EntityType>
+        <EntityType Name="SVS_CONVERSATION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="48" Unicode="false" FixedLength="false" />
+          <Property Name="VERSIONID" Type="String" Nullable="false" MaxLength="48" Unicode="false" FixedLength="false" />
+          <Property Name="CREATIONDATE" Type="DateTime" Nullable="false" Precision="6" />
+        </EntityType>
+        <Association Name="APPL_REQ_USERS_APPL_REQ">
+          <End Role="APPLICATION_REQUEST" Type="Model.APPLICATION_REQUEST" Multiplicity="1" />
+          <End Role="APPLICATION_REQUEST_USERS" Type="Model.APPLICATION_REQUEST_USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPLICATION_REQUEST">
+              <PropertyRef Name="REQUESTID" />
+            </Principal>
+            <Dependent Role="APPLICATION_REQUEST_USERS">
+              <PropertyRef Name="REQUESTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011761">
+          <End Role="MCC_Company" Type="Model.MCC_Company" Multiplicity="0..1" />
+          <End Role="MCC_User" Type="Model.MCC_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_User">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011762">
+          <End Role="MCC_User" Type="Model.MCC_User" Multiplicity="0..1" />
+          <End Role="MCC_Directory" Type="Model.MCC_Directory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_Directory">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011766">
+          <End Role="MCC_Directory" Type="Model.MCC_Directory" Multiplicity="0..1" />
+          <End Role="MCC_MessageInDirectory" Type="Model.MCC_MessageInDirectory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Directory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageInDirectory">
+              <PropertyRef Name="DirectoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011763">
+          <End Role="MCC_Message" Type="Model.MCC_Message" Multiplicity="0..1" />
+          <End Role="MCC_MessageRecipient" Type="Model.MCC_MessageRecipient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageRecipient">
+              <PropertyRef Name="MessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011764">
+          <End Role="MCC_User" Type="Model.MCC_User" Multiplicity="0..1" />
+          <End Role="MCC_Message" Type="Model.MCC_Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_Message">
+              <PropertyRef Name="SenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011765">
+          <End Role="MCC_Message" Type="Model.MCC_Message" Multiplicity="0..1" />
+          <End Role="MCC_MessageInDirectory" Type="Model.MCC_MessageInDirectory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_Message">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageInDirectory">
+              <PropertyRef Name="MessageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SYS_C0011768">
+          <End Role="MCC_User" Type="Model.MCC_User" Multiplicity="0..1" />
+          <End Role="MCC_MessageRecipient" Type="Model.MCC_MessageRecipient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MCC_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MCC_MessageRecipient">
+              <PropertyRef Name="RecipientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="APPLICATION_REQUEST">
+            <EntityTypeMapping TypeName="Model.APPLICATION_REQUEST">
+              <MappingFragment StoreEntitySet="APPLICATION_REQUEST">
+                <ScalarProperty Name="REQUESTID" ColumnName="REQUESTID" />
+                <ScalarProperty Name="BUYERAGENTID" ColumnName="BUYERAGENTID" />
+                <ScalarProperty Name="BUYERPCC" ColumnName="BUYERPCC" />
+                <ScalarProperty Name="APPLICATIONID" ColumnName="APPLICATIONID" />
+                <ScalarProperty Name="APPLICATIONVERSION" ColumnName="APPLICATIONVERSION" />
+                <ScalarProperty Name="REQUESTDATE" ColumnName="REQUESTDATE" />
+                <ScalarProperty Name="APPROVEDDATE" ColumnName="APPROVEDDATE" />
+                <ScalarProperty Name="SALEDATE" ColumnName="SALEDATE" />
+                <ScalarProperty Name="LASTUPDATE" ColumnName="LASTUPDATE" />
+                <ScalarProperty Name="PURCHASEPRICE" ColumnName="PURCHASEPRICE" />
+                <ScalarProperty Name="REQUESTSTATUS" ColumnName="REQUESTSTATUS" />
+                <ScalarProperty Name="BUYERAGENCYNAME" ColumnName="BUYERAGENCYNAME" />
+                <ScalarProperty Name="ENTIREAGENCY" ColumnName="ENTIREAGENCY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="APPLICATION_REQUEST_USERS">
+            <EntityTypeMapping TypeName="Model.APPLICATION_REQUEST_USERS">
+              <MappingFragment StoreEntitySet="APPLICATION_REQUEST_USERS">
+                <ScalarProperty Name="REQUESTID" ColumnName="REQUESTID" />
+                <ScalarProperty Name="AGENTID" ColumnName="AGENTID" />
+                <ScalarProperty Name="PCC" ColumnName="PCC" />
+                <ScalarProperty Name="DATEADDED" ColumnName="DATEADDED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCC_Company">
+            <EntityTypeMapping TypeName="Model.MCC_Company">
+              <MappingFragment StoreEntitySet="MCC_Company">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCC_Directory">
+            <EntityTypeMapping TypeName="Model.MCC_Directory">
+              <MappingFragment StoreEntitySet="MCC_Directory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCC_Message">
+            <EntityTypeMapping TypeName="Model.MCC_Message">
+              <MappingFragment StoreEntitySet="MCC_Message">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+                <ScalarProperty Name="ConversationId" ColumnName="ConversationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCC_MessageInDirectory">
+            <EntityTypeMapping TypeName="Model.MCC_MessageInDirectory">
+              <MappingFragment StoreEntitySet="MCC_MessageInDirectory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReadDate" ColumnName="ReadDate" />
+                <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+                <ScalarProperty Name="DirectoryId" ColumnName="DirectoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCC_MessageRecipient">
+            <EntityTypeMapping TypeName="Model.MCC_MessageRecipient">
+              <MappingFragment StoreEntitySet="MCC_MessageRecipient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RecipientId" ColumnName="RecipientId" />
+                <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MCC_User">
+            <EntityTypeMapping TypeName="Model.MCC_User">
+              <MappingFragment StoreEntitySet="MCC_User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SabreID" ColumnName="SabreID" />
+                <ScalarProperty Name="Pcc" ColumnName="Pcc" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SVS_CONVERSATION">
+            <EntityTypeMapping TypeName="Model.SVS_CONVERSATION">
+              <MappingFragment StoreEntitySet="SVS_CONVERSATION">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="VERSIONID" ColumnName="VERSIONID" />
+                <ScalarProperty Name="CREATIONDATE" ColumnName="CREATIONDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

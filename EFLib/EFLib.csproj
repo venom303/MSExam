@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB58F600-6CB1-483F-BDF1-A0325FAFF437}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EFLib</RootNamespace>
+    <AssemblyName>EFLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APPLICATION_REQUEST.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="APPLICATION_REQUEST_USERS.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Class1.cs" />
+    <Compile Include="MCC_Company.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCC_Directory.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCC_Message.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCC_MessageInDirectory.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCC_MessageRecipient.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MCC_User.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SCMSG.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCMSG.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCMSG.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SCMSG.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SCMSG.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SVS_CONVERSATION.cs">
+      <DependentUpon>SCMSG.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="SCMSG.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SCMSG.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="SCMSG.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SCMSG.edmx</DependentUpon>
+      <LastGenOutput>SCMSG.Context.cs</LastGenOutput>
+    </None>
+    <None Include="SCMSG.edmx.diagram">
+      <DependentUpon>SCMSG.edmx</DependentUpon>
+    </None>
+    <None Include="SCMSG.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SCMSG.edmx</DependentUpon>
+      <LastGenOutput>SCMSG.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

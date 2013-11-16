@@ -87,7 +87,7 @@ namespace Examples.ADO
             Console.ReadKey();
         }
 
-        [Example("Data Adapter Example", true)]
+        [Example("Data Adapter Example", false)]
         public void DataAdapterExample()
         {
             using (var connection = new OracleConnection(ConnectionString))
@@ -116,8 +116,8 @@ namespace Examples.ADO
                 //dataSet.Tables[0].Rows.Add(newRow);
                 ///adapter.Update(dataSet.Tables[0]);
 
-                dataSet.Tables[0].Rows[0].Delete();
-                    adapter.Update(dataSet.Tables[0]);
+                //dataSet.Tables[0].Rows[0].Delete();
+                    //adapter.Update(dataSet.Tables[0]);
                 connection.Close();
 
                 foreach (DataRow row in dataSet.Tables[0].Rows)

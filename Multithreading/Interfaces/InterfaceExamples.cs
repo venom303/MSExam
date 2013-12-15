@@ -123,8 +123,8 @@ namespace Examples.Interfaces
         {
             var warpPrism = new WarpPrism();
             //
-            warpPrism.Add(new ProtossUnit { Name = "Colosus", Size = 4 });
-            warpPrism.Add(new ProtossUnit { Name = "Colosus", Size = 4 });
+            warpPrism.Add(new ProtossUnit {Name = "Colosus", Size = 4});
+            warpPrism.Add(new ProtossUnit {Name = "Colosus", Size = 4});
 
             foreach (var unit in warpPrism)
                 Console.WriteLine(unit.ToString());
@@ -132,13 +132,23 @@ namespace Examples.Interfaces
 
             var warpPrism2 = new WarpPrism();
             //
-            warpPrism2.Add(new ProtossUnit { Name = "Zealot", Size = 2 });
-            warpPrism2.Add(new ProtossUnit { Name = "Stalker", Size = 2 });
-            warpPrism2.Add(new ProtossUnit { Name = "Stalker", Size = 2 });
-            warpPrism2.Add(new ProtossUnit { Name = "Zealot", Size = 2 });
+            warpPrism2.Add(new ProtossUnit {Name = "Zealot", Size = 2});
+            warpPrism2.Add(new ProtossUnit {Name = "Stalker", Size = 2});
+            warpPrism2.Add(new ProtossUnit {Name = "Stalker", Size = 2});
+            warpPrism2.Add(new ProtossUnit {Name = "Zealot", Size = 2});
 
             foreach (var unit in warpPrism2)
                 Console.WriteLine(unit.ToString());
+
+            Console.ReadKey();
+
+        }
+
+        [Example("ExplicitInterfaceExample", false)]
+        public void ExplicitInterfaceExample()
+        {
+            var unit = new SCUnit();
+            // unit.Name - doesn't work
 
             Console.ReadKey();
         }

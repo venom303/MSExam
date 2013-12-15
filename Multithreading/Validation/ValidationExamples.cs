@@ -57,7 +57,7 @@ namespace Examples.Validation
 #endif
         }
 
-        [Example("Trace Example", true)]
+        [Example("Trace Example", false)]
         public void TraceExamples()
         {
             var listener = new EventLogTraceListener("Valiation Examples");
@@ -76,6 +76,7 @@ namespace Examples.Validation
 
             Console.WriteLine("Traces");
             Trace.WriteLine("Validation Example Log");
+            Console.ReadKey();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Examples.Exceptions
             Console.ReadKey();
         }
 
-        [Example("Rethrow e Exception Example", false)]
+        [Example("Rethrow e Exception Example", true)]
         public void RethrowEExceptionExample()
         {
             try
@@ -87,6 +87,24 @@ namespace Examples.Exceptions
                 Console.WriteLine(e.StackTrace);
                 Console.WriteLine("---------------------");
                 throw new Exception();
+            }
+
+            Console.ReadKey();
+        }
+
+
+        [Example("Exception without catch Example", true)]
+        public void ExceptionWithoutCatchExample()
+        {
+            try
+            {
+                Console.WriteLine("Before Throwing");
+                ThrowException();
+                Console.WriteLine("After Throwing");
+            }
+            finally
+            {
+                Console.WriteLine("Finnaly block");
             }
 
             Console.ReadKey();
